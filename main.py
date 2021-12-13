@@ -1,5 +1,4 @@
 from globs import *
-from map_breadth_first import *
 from map import *
 
 win = pygame.display.set_mode((WIDTH+200, HEIGHT+50))
