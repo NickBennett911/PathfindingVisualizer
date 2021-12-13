@@ -30,6 +30,6 @@ breadth_text = smallfont.render("Breadth First", True, BLACK)
 notetext = smallfont.render("Notes: With A-Star selected you may draw barriers to path-find around/SPACE to run algorithm.", True, BLACK)
 
 def get(array, priority_num):
-    temp = array[priority_num-1][0]
-    del array[priority_num-1]
-    return (array, temp, priority_num-1)
+    temp = array[0][0]
+    del array[0]
+    return (array, temp)

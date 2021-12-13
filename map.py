@@ -118,8 +118,7 @@ class Map():
     def breadth_first_algo(self):
         """ Method responsible for being called each frame when breadth first is being used"""
         # using my own get function it gets the current tile that will be looked at this frame
-        self.frontierlist, self.current, priority = get(self.frontierlist, self.priority)
-
+        self.frontierlist, self.current = get(self.frontierlist, self.priority)
         # testing if it has already found the end tile, if so no need to go on
         if self.current == self.get_end():
             self.path_found = True
@@ -131,8 +130,7 @@ class Map():
         for next in self.getneighbors(self.current):
             # only continue if the neighbor tile hasnt already been visited
             if next not in self.came_from:
-                self.frontierlist.append([next, priority])  #put the tile in the frontier list to be draw
-                priority += 1
+                self.frontierlist.append([next])  #put the tile in the frontier list to be draw
                 self.came_from[next] = self.current # put next in camefrom dict as key with it pointing to the current tile
 
     def construct_path(self):
