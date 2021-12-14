@@ -59,6 +59,7 @@ class Map():
         return self.map[self.end_index]
 
     def draw(self, win):
+        # this sets up which tiles should need to be colored a certain way to show them as a frontier tile or visited tile
         if self.use_breadth or self.use_a_star: # only if using an algorithm
             for tile in self.came_from:     # if tile in came from them it gets made into visited tile
                 if not tile.best_path and not tile.visited: # dont bother continuing if already visited
@@ -84,8 +85,9 @@ class Map():
         """ Method respobsible for being called each frame when breadth a star is being used"""
         # frontier is a Priority queue so get gives the item with the current highest priority
         self.current = self.frontier.get()
-        for tile in self.map:       # item stored in frontier is tile position
-            if self.current[1] == tile.mPos:    # this find converts self.current to the correct tile obj
+        # Go through and set our self.current to our actual current tile object
+        for tile in self.map:       
+            if self.current[1] == tile.mPos:
                 self.current = tile
                 break
 
@@ -98,7 +100,7 @@ class Map():
         for next in self.getneighbors(self.current):
             # cost represents the cost so far plus what it will take to move to the next tile
             # if next in came from dont continue unless that cost is the best option for the next tile
-            new_cost = self.cost_so_far[self.current] + next.tile_cost
+            new_cost = self.cost_so_far[self.current] + next.tile_cost  
             if next not in self.came_from or new_cost < self.cost_so_far[next]:
                 self.cost_so_far[next] = new_cost
                 # determins priority of next tile with the cost plus the distance to the end
@@ -118,14 +120,14 @@ class Map():
     def breadth_first_algo(self):
         """ Method responsible for being called each frame when breadth first is being used"""
         # using my own get function it gets the current tile that will be looked at this frame
-        self.frontierlist, self.current = get(self.frontierlist, self.priority)
+        self.frontierlist, self.current = get(self.frontierlist)
         # testing if it has already found the end tile, if so no need to go on
         if self.current == self.get_end():
             self.path_found = True
             self.use_breadth = False
             self.construct_path()
             return
-
+        
         # uses my get neighbors to find all the current adjacent neighbors of the current tile
         for next in self.getneighbors(self.current):
             # only continue if the neighbor tile hasnt already been visited

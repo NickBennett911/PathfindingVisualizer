@@ -29,7 +29,7 @@ breadth_text = smallfont.render("Breadth First", True, BLACK)
 
 notetext = smallfont.render("Notes: With A-Star selected you may draw barriers to path-find around/SPACE to run algorithm.", True, BLACK)
 
-def get(array, priority_num):
+def get(array):             #pops the first element off the array and returns both within a tuple
     temp = array[0][0]
     del array[0]
     return (array, temp)

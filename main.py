@@ -11,7 +11,7 @@ algo_type = "A-star"    # current algorithm type selected
 
 while not done:
     #UPDATE
-    deltaTime = clock.tick(20) / 1000.0
+    deltaTime = clock.tick() / 1000.0
     #INPUT
     evt = pygame.event.poll()
     mouse_rect[0], mouse_rect[1] = pygame.mouse.get_pos()
